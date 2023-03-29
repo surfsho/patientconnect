@@ -6,6 +6,7 @@ import { ref, onMounted } from 'vue'
 var selected = reactive({active: false}); 
 var searchproviders = ref(props.providers);
 var id = "";
+//highlight card
 function select(e){
     console.log(e);
     let active =  document.querySelector(".v-card.active");
@@ -16,7 +17,7 @@ function select(e){
     id = e.target.id;
     id = id.replace("click","");
 }
-
+//click id
 function click(id){
     return "click-"+id;
 }
@@ -25,10 +26,11 @@ function click(id){
 
 function book() {
     console.log(id);
+    //get patient name
     const urlParams = new URLSearchParams(window.location.search);
     router.get('/choosedate',{patient:urlParams.get('patient'),provider:id});
 }
-
+//search providers
 function search(e) {
    if(e.target.value.length == 0) {
     

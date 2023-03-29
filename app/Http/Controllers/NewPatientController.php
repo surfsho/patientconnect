@@ -13,7 +13,9 @@ class NewPatientController extends Controller
     }
 
     function create(Request $request) {
+        //get collection
         $input = $request->collect();
+        //create a patient
         DB::table('patients')->insert($request->validate([
             'first_name' => ["required"],
             "last_name" => ["required"],
@@ -24,6 +26,7 @@ class NewPatientController extends Controller
             "zipcode" => ["required"],
             "state" => ["required"]
         ]));
+        //redirect to choose provider
         return redirect("/chooseprovider?patient=".DB::getPdo()->lastInsertId());
     }
 }

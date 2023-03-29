@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, watch } from 'vue'
 let props = defineProps({ patients: Array, providers: Array })
+//reactive v-model
 let form = reactive({
   starttime: "",
   endtime: "",
@@ -9,11 +10,14 @@ let form = reactive({
   provider: "",
   location: "",
 })
-
-
+let selectedTasks=[];
+function selectAll(p) {
+  console.log(p)
+}
 
 let rp = ref(props.patients);
 console.log(rp.value);
+//filter by starttime endtime provider location patient id patient_name 
 function filter() {
   console.log(form.provider);
   let correct = false;
@@ -47,8 +51,10 @@ function filter() {
   else
     rp.value = p;
 }
+//watch for v-select because events not working
 watch(form,filter);
 console.log(props.patients.length);
+//table header
 var headers=[{title:"Time",key:"giventime"},
 {title:"Patient Name", key:"first_name"},
 
@@ -59,6 +65,9 @@ var headers=[{title:"Time",key:"giventime"},
 {title:"Phone", key:"phone_number"}];
 </script>
 <template>
+<div style="padding:20px; margin: 20px; font-size: 25px; border-bottom: 1px solid black;">
+    <p>Appointment Dashboard</p>
+</div>
 <v-row class="ma-4">
 <v-col cols="2">
 <v-list-subheader>Start Time</v-list-subheader>
@@ -108,8 +117,11 @@ var headers=[{title:"Time",key:"giventime"},
      show-select
      
   >
-   <template v-slot:item="{ item, index }">
+  
+  
+   <template v-slot:item="{ item, index}">
       <tr>
+      
         <td>
         <v-checkbox></v-checkbox>
         </td>

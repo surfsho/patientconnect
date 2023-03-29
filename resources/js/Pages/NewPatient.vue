@@ -2,13 +2,15 @@
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 
+//validation rules for email
 var emailRules = [ 
   v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
 ]
-
+//validation rules for phoneNumber
 var phoneNumber = [
   v => /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(v) || 'Phone number must be valid'
 ]
+//reactive v-model
 const form = reactive({
   first_name: null,
   last_name: null,
@@ -19,7 +21,7 @@ const form = reactive({
   zipcode: null,
   email_address: null,
 })
-
+//submit patient form
 function submit() {
   router.post('/newpatient', form)
 }

@@ -2,18 +2,23 @@
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
 var items = reactive([])
+//reactive v-model
 var item = reactive({
     date: null,
     time: null,
 })
 var temp = {};
+//function to settime manually on button click
 function settime(time){
     item.time = time;
 }
+//create appointment by sending data to book appointment controller
 function create() {
+    //get patient and provider id from url
     const urlParams = new URLSearchParams(window.location.search);
     router.post('/bookappointment',{patient:urlParams.get('patient'),provider:urlParams.get("provider"),slots:items});
 }
+//function to add preference
 function addpreference() {
     if(items.length == 3) {
         return;

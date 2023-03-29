@@ -12,10 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('providers', function (Blueprint $table) {
+            //id
             $table->id();
+            //full name
             $table->string('full_name');
+            //qualification
             $table->string('qualification');
+            //address
             $table->string('address');
+            //avatar
             $table->string('avatar');
         });
     }
