@@ -15,9 +15,9 @@ class NewPatientController extends Controller
     function create(Request $request) {
         $input = $request->collect();
         DB::table('patients')->insert($request->validate([
-            'firstname' => ["required"],
-            "lastname" => ["required"],
-            "sex" => ["required"],
+            'first_name' => ["required"],
+            "last_name" => ["required"],
+            "gender" => ["required"],
             "email_address" => ["required"],
             "phone_number" => ["required"],
             "dateofbirth" => ["required"],

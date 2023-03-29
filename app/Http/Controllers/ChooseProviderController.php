@@ -17,7 +17,7 @@ class ChooseProviderController extends Controller
     function create(Request $request) {
         $input = $request->collect();
         $uploaded_files = $request->file('avatar')->store('public/uploads/');
-        DB::table('providers')->insert(['fullname'=>$input->get('fullname'),'qualification'=>$input->get('qualification'),'avatar'=>asset($uploaded_files),'address'=>""]);
+        DB::table('providers')->insert(['full_name'=>$input->get('fullname'),'qualification'=>$input->get('qualification'),'avatar'=>asset($uploaded_files),'address'=>""]);
         return $uploaded_files;
     }
 }

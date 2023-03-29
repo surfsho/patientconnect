@@ -68,12 +68,12 @@ append-inner-icon="mdi mdi-magnify" variant="outlined" @change="search"></v-text
 
 <v-card width="400" style="text-align:center;"  :id="'click'+provider.id" @click="select">
 <v-avatar
-    :image="provider.gender == 'male'?'/storage/uploads/doctor.png':'/storage/uploads/woman.png'"
+    :image="provider.avatar.replace('public','storage')"
     style="height:150px;width:150px;"
     >
     </v-avatar>
       <v-card-item>
-        <v-card-title>{{ provider.fullname}}</v-card-title>
+        <v-card-title>{{ provider.full_name}}</v-card-title>
 
         <v-card-subtitle>Next Available: Thu, July 2</v-card-subtitle>
       </v-card-item>

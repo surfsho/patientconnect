@@ -14,13 +14,17 @@ class BookAppointmentController extends Controller
 
     function create(Request $request) {
         $input = $request->collect();
+        $index = 1;
         foreach($input->get('slots') as $value) {
             DB::table("appointments")->insert([
-                "givendate"=> $value['fdate'],
-                "giventime"=> date('Y-m-d H:i:s', strtotime($value['date']." ".$value['time'])),
+                "appt_date"=> $value['fdate'],
+                "appt_time"=> date('Y-m-d H:i:s', strtotime($value['date']." ".$value['time'])),
+                "preference" => $index,
                 "patient_id" => (int) $input->get('patient'),
                 "provider_id" => (int)$input->get('provider')
             ]);
+
+            $index = $index + 1;
         }
         return redirect("/appointmentdashboard");
         

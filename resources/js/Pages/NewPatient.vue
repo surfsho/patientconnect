@@ -10,10 +10,10 @@ var phoneNumber = [
   v => /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(v) || 'Phone number must be valid'
 ]
 const form = reactive({
-  firstname: null,
-  lastname: null,
+  first_name: null,
+  last_name: null,
   dateofbirth: null,
-  sex: null,
+  gender: null,
   phone_number: null,
   state: null,
   zipcode: null,
@@ -52,7 +52,7 @@ function submit() {
             </v-col>
             </v-row>
           <v-text-field
-            v-model="form.firstname"
+            v-model="form.first_name"
             :rules="nameRules"
             :counter="10"
             
@@ -81,7 +81,7 @@ function submit() {
             </v-col>
             </v-row>
           <v-text-field
-            v-model="form.lastname"
+            v-model="form.last_name"
             :rules="nameRules"
             :counter="10"
             
@@ -141,7 +141,7 @@ function submit() {
             </v-col>
             </v-row>
            <v-select
-            v-model="form.sex"
+            v-model="form.gender"
             variant="outlined"
             :items="['Male', 'Female']"
         ></v-select>

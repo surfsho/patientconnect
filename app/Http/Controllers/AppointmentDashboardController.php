@@ -10,10 +10,12 @@ class AppointmentDashboardController extends Controller
 {
     function index() {
         $results = DB::table("appointments")->join('patients', 'appointments.patient_id', '=', 'patients.id')
-        ->join('providers', 'appointments.provider_id', '=', 'providers.id')->get();
-
+        ->join('providers', 'appointments.provider_id', '=', 'providers.id')->orderBy('patient_id','DESC')->get();
+        
+        $provider_names = DB::table("providers")->pluck('full_name');
         return Inertia::render("AppointmentDashboard",[
-            "patients"=> $results
+            "patients"=> $results,
+            "providers"=>$provider_names
         ]);
     }
 }

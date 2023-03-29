@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('appt_date');
             $table->time('appt_time',0);
+            $table->bigInteger('preference');
             $table->foreignId('patient_id');
             $table->foreignId('provider_id');
             $table->foreign('patient_id')->references('id')->on('patients');
