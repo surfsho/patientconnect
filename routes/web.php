@@ -28,3 +28,4 @@ Route::post('/createprovider',[ChooseProviderController::class,"create"]);
 Route::post('/newpatient', [NewPatientController::class,"create"]);
 Route::post('/bookappointment',[BookAppointmentController::class,"create"]);
 Route::get('/appointmentdashboard',[AppointmentDashboardController::class,"index"]);
+Route::post('/sendemail',[AppointmentDashboardController::class,"sendEmail"]);

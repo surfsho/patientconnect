@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, watch } from 'vue'
+import { router } from '@inertiajs/vue3'
 let props = defineProps({ patients: Array, providers: Array })
 //reactive v-model
 let form = reactive({
@@ -63,6 +64,10 @@ var headers=[{title:"Time",key:"giventime"},
 {title:"Location", key:"state"},
 {title:"Email", key:"email_address"},
 {title:"Phone", key:"phone_number"}];
+
+function submit(email2) {
+  router.post('/sendemail',{email:email2});
+}
 </script>
 <template>
 <div style="padding:20px; margin: 20px; font-size: 25px; border-bottom: 1px solid black;">
@@ -136,7 +141,7 @@ var headers=[{title:"Time",key:"giventime"},
         <td>{{ item.columns.patient_id }}</td>
         <td>{{ item.columns.full_name }}</td>
         <td>{{ item.columns.state }}</td>
-        <td>{{ item.columns.email_address }}</td>
+        <td>{{ item.columns.email_address }} <v-btn @click="submit(item.columns.email_address)">Send</v-btn></td>
         <td>{{ item.columns.phone_number }}</td>
       </tr>
     </template>

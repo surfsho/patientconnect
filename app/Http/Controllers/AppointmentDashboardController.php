@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
+use MailchimpTransactional\ApiClient;
+use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentDashboardController extends Controller
 {
@@ -19,5 +22,10 @@ class AppointmentDashboardController extends Controller
             "patients"=> $results,
             "providers"=>$provider_names
         ]);
+    }
+
+    function sendEmail(Request $request) {
+        $data = "Hello World";
+        Mail::to($request->input('email'))->send(new TestEmail($data));
     }
 }
