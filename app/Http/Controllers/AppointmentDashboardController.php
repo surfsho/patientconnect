@@ -17,15 +17,30 @@ class AppointmentDashboardController extends Controller
         ->join('providers', 'appointments.provider_id', '=', 'providers.id')->orderBy('patient_id','DESC')->get();
         
         $provider_names = DB::table("providers")->pluck('full_name');
+
+        $message = DB::table('message')->get();
         //send data to vuejs template
         return Inertia::render("AppointmentDashboard",[
             "patients"=> $results,
-            "providers"=>$provider_names
+            "providers"=>$provider_names,
+            "messages"=> $message
         ]);
     }
 
     function sendEmail(Request $request) {
-        $data = "Hello World";
-        Mail::to($request->input('email'))->send(new TestEmail($data));
+        
+        Mail::to($request->input('email'))->send(new TestEmail($request->input('message')));
+    }
+
+    function createTemplate() {
+        return Inertia::render("CreateTemplate");
+    }
+
+    function newTemplate(Request $request) {
+        DB::table('message')->insert([
+            "name" => $request->input('name'),
+            "template" => $request->input('template'),
+            "type" => $request->input('type')
+        ]);
     }
 }

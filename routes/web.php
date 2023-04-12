@@ -29,3 +29,5 @@ Route::post('/newpatient', [NewPatientController::class,"create"]);
 Route::post('/bookappointment',[BookAppointmentController::class,"create"]);
 Route::get('/appointmentdashboard',[AppointmentDashboardController::class,"index"]);
 Route::post('/sendemail',[AppointmentDashboardController::class,"sendEmail"]);
+Route::get('/createtemplate',[AppointmentDashboardController::class,"createTemplate"]);
+Route::post('/newtemplate',[AppointmentDashboardController::class,"newTemplate"]);
